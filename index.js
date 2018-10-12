@@ -1,6 +1,6 @@
 const fetch = require('isomorphic-unfetch')
 
-const DEFAULT_URL = 'https://zinc.louismerl.in/'
+const DEFAULT_URL = 'https://zinc.cool/'
 
 class Cothoreasy {
   constructor (args) {
@@ -11,10 +11,41 @@ class Cothoreasy {
     this.url = url || DEFAULT_URL
   }
 
-  async status () {
-    const res = await fetch(`${this.url}status`)
+  async init () {
+    const cothorities = await this.get('cothorities')
+    if (!cothorities) throw new Error('Could not get the list of cothorities')
+    this.cothorities = cothorities
+    this.cothority = cothorities[0]
+  }
+
+  parameters () {
+    return this.cothority ? `?cothority=${this.cothority}` : ''
+  }
+
+  async changeCothority (cothority) {
+    if (this.cothorities.includes(cothority)) {
+      this.cothority = cothority
+    } else {
+      throw new Error('Could not change cothority, it does not exist')
+    }
+  }
+
+  async get (query) {
+    const res = await fetch(this.url + query + this.parameters())
     const text = await res.text()
     return JSON.parse(text)
+  }
+
+  async status () {
+    return this.get('status')
+  }
+
+  async skipchain () {
+    return this.get('skipchain')
+  }
+
+  async skipchains () {
+    return this.get('skipchains')
   }
 }
 
