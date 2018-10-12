@@ -1,6 +1,6 @@
 {
   "name": "cothoreasy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The fastest way to connect to the cothority network",
   "main": "index.js",
   "repository": "https://github.com/bsaepfl/cothoreasy/",
