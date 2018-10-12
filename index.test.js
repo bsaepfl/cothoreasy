@@ -3,11 +3,19 @@ const Cothoreasy = require('./index')
 
 const cauth = new Cothoreasy()
 
-test('url is instanciated', () => {
+beforeAll(() => {
+  return cauth.init()
+})
+
+test('url field is instanciated', () => {
   expect(cauth.url).toBeDefined()
 })
 
-describe('status', () => {
+test('cothorities field is an array', () => {
+  expect(Array.isArray(cauth.cothorities)).toBeTruthy()
+})
+
+describe('status method', () => {
   let status
   beforeEach(async () => {
     status = await cauth.status()
@@ -23,7 +31,7 @@ describe('status', () => {
   })
 })
 
-describe('skipchain', () => {
+describe('skipchain method', () => {
   let skipchain
   beforeEach(async () => {
     skipchain = await cauth.skipchain()
@@ -36,7 +44,7 @@ describe('skipchain', () => {
   })
 })
 
-describe('skipchains', () => {
+describe('skipchains method', () => {
   let skipchains
   beforeEach(async () => {
     skipchains = await cauth.skipchains()

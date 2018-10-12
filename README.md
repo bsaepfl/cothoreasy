@@ -5,29 +5,38 @@ This package helps you connect to the cothority conodes, by connecting to a [zin
 
 ## How to use ?
 
-First, install the dependency:
+First, install the dependency (it's [ultra light](https://bundlephobia.com/result?p=cothoreasy) :sparkles:):
 ```
 yarn add cothoreasy
 ```
 
-Then, import it to your project (also works using CommonJS modules with node):
-```
+Then, import it to your project:
+```javascript
 import Cothoreasy from 'cothoreasy'
+
+// or using CommonJS modules
+const Cothoreasy = require('cothoreasy')
 ```
 
 Instantiate the class, and then use it !
-```
+```javascript
 const coth = new Cothoreasy()
 
+
+// use it with async/await
+await coth.init()
 console.log(await coth.status())
--- or with .then() --
-coth.status().then(console.log)
+
+// use it with .then()
+coth.init().then(() => {
+  coth.status().then(console.log)
+})
 ```
 
 ## Options
 
-You can pass options when instantiating:
-```
+You can pass in options when instantiating:
+```javascript
 const coth = new Cothoreasy({ url: 'https://my_zinc_instance.com/' })
 ```
 

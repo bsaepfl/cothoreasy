@@ -11,6 +11,12 @@ class Cothoreasy {
     this.url = url || DEFAULT_URL
   }
 
+  async init () {
+    const cothorities = await Cothoreasy.get(`${this.url}cothorities`)
+    if (!cothorities) throw new Error('Could not get the list of cothorities')
+    this.cothorities = cothorities
+  }
+
   static async get (query) {
     const res = await fetch(query)
     const text = await res.text()
