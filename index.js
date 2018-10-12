@@ -11,10 +11,22 @@ class Cothoreasy {
     this.url = url || DEFAULT_URL
   }
 
-  async status () {
-    const res = await fetch(`${this.url}status`)
+  static async get (query) {
+    const res = await fetch(query)
     const text = await res.text()
     return JSON.parse(text)
+  }
+
+  async status () {
+    return Cothoreasy.get(`${this.url}status`)
+  }
+
+  async skipchain () {
+    return Cothoreasy.get(`${this.url}skipchain`)
+  }
+
+  async skipchains () {
+    return Cothoreasy.get(`${this.url}skipchains`)
   }
 }
 
