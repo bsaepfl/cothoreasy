@@ -43,3 +43,7 @@ const coth = new Cothoreasy({ url: 'https://my_zinc_instance.com/' })
 ### `url`
 
 By default, cothoreasy connects to the BSA zinc instance. You can pass in the url for your own instance.
+
+## Change Cothority
+
+If you want to change the cothority, just check out which ones are available in `coth.cothorities` and run `coth.changeCothority(yourCothority)` (this will return a promise).

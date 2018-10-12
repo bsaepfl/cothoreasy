@@ -53,3 +53,20 @@ describe('skipchains method', () => {
     expect(typeof skipchains).toBe('object')
   })
 })
+
+describe('changeing cothority', () => {
+  let cauth = new Cothoreasy()
+
+  beforeAll(() => {
+    return cauth.init()
+  })
+
+  test('changes the conode status', async () => {
+    console.log(cauth)
+    await cauth.changeCothority(cauth.cothorities[0])
+    const status1 = await cauth.status()
+    await cauth.changeCothority(cauth.cothorities[1])
+    const status2 = await cauth.status()
+    expect(status1).not.toEqual(status2)
+  })
+})

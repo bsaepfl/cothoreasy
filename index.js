@@ -12,27 +12,40 @@ class Cothoreasy {
   }
 
   async init () {
-    const cothorities = await Cothoreasy.get(`${this.url}cothorities`)
+    const cothorities = await this.get('cothorities')
     if (!cothorities) throw new Error('Could not get the list of cothorities')
     this.cothorities = cothorities
+    this.cothority = cothorities[0]
   }
 
-  static async get (query) {
-    const res = await fetch(query)
+  parameters () {
+    return this.cothority ? `?cothority=${this.cothority}` : ''
+  }
+
+  async changeCothority (cothority) {
+    if (this.cothorities.includes(cothority)) {
+      this.cothority = cothority
+    } else {
+      throw new Error('Could not change cothority, it does not exist')
+    }
+  }
+
+  async get (query) {
+    const res = await fetch(this.url + query + this.parameters())
     const text = await res.text()
     return JSON.parse(text)
   }
 
   async status () {
-    return Cothoreasy.get(`${this.url}status`)
+    return this.get('status')
   }
 
   async skipchain () {
-    return Cothoreasy.get(`${this.url}skipchain`)
+    return this.get('skipchain')
   }
 
   async skipchains () {
-    return Cothoreasy.get(`${this.url}skipchains`)
+    return this.get('skipchains')
   }
 }
 
