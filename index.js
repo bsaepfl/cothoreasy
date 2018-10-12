@@ -1,6 +1,6 @@
 const fetch = require('isomorphic-unfetch')
 
-const DEFAULT_URL = 'https://zinc.louismerl.in/'
+const DEFAULT_URL = 'https://zinc.cool/'
 
 class Cothoreasy {
   constructor (args) {
