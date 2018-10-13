@@ -62,7 +62,6 @@ describe('changeing cothority', () => {
   })
 
   test('changes the conode status', async () => {
-    console.log(cauth)
     await cauth.changeCothority(cauth.cothorities[0])
     const status1 = await cauth.status()
     await cauth.changeCothority(cauth.cothorities[1])
